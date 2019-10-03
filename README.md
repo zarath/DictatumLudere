@@ -1,9 +1,13 @@
 DictatumLudere
 ==============
 
-A small qt based music player with footpaddle support on Linux.
+Footpadle enabled qt based transcription player.
+
+![Logo](favicon.png)
 
 Also a standard joystick with two buttons can be used to play
 and rewind...
+
+Developed with Qt 5.13
 
 ![Screenshot](Screenshot.png)
