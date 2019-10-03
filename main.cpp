@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QtQml>
 #include <QtDebug>
+#include <QIcon>
 
 #include "dssloader.h"
 #include "footpaddle.h"
@@ -12,6 +13,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName("outgesourced.org");
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
+
+    app.setWindowIcon(QIcon(":/favicon.png"));
 
     DSSLoader loader;
     FootPaddle footPaddle(&app, "/dev/input/js0");

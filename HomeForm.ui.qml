@@ -37,14 +37,13 @@ Page {
         anchors.verticalCenterOffset: -35
     }
 
-
     Button {
         id: button_rev
         x: 57
         y: 22
         width: 80
-        text: "REV"
         flat: false
+        text: qsTr("REV")
     }
 
     Button {
@@ -62,7 +61,6 @@ Page {
         width: 80
         text: qsTr("FWD")
     }
-
 
     Slider {
         id: speedSlider
@@ -96,8 +94,6 @@ Page {
             ToolTip.visible: hovered
             ToolTip.text: qsTr("Reset")
         }
-
-
     }
 
     Slider {
@@ -147,6 +143,4 @@ Page {
         from: 0
         to: 1
     }
-
-
 }

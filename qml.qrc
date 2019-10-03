@@ -4,5 +4,6 @@
         <file>HomeForm.ui.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>Home.qml</file>
+        <file>favicon.png</file>
     </qresource>
 </RCC>
