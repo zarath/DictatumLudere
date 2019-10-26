@@ -28,8 +28,8 @@ public:
     void close();
     Q_INVOKABLE void updateButtons();
     Q_INVOKABLE int getButton(const int buttonNr) {
-        return button_.at(buttonNr);
-    };
+        return button_.at(static_cast<size_t>(buttonNr));
+    }
 
 private:
     QString deviceName_{};
