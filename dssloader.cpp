@@ -6,9 +6,9 @@ DSSLoader::DSSLoader(QObject *parent) : QObject(parent)
 {
 }
 
-void DSSLoader::prepare(QUrl audio_url){
+void DSSLoader::prepare(const QUrl& audio_url){
     auto path = audio_url.path();
-    if (path.toLower().endsWith(".dss")){
+    if (path.endsWith(".dss", Qt::CaseInsensitive)){
         qDebug() << path;
     }
 

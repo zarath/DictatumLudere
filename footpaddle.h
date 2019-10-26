@@ -1,6 +1,7 @@
 #ifndef FOOTPADDLE_H
 #define FOOTPADDLE_H
 
+#include <array>
 #include <QObject>
 #include <linux/joystick.h>
 
@@ -19,17 +20,21 @@ public:
     };
 
     explicit FootPaddle(QObject *parent = nullptr,
-                       const QString& deviceName = "");
+                       const QString&& deviceName = "");
     ~FootPaddle();
     FootPaddle::ErrorCode open();
     void close();
     Q_INVOKABLE void updateButtons();
-    Q_INVOKABLE int getButton(const int buttonNr);
+    Q_INVOKABLE int getButton(const int buttonNr) {
+        return button_.at(buttonNr);
+    };
+
+    static constexpr auto MAX_BUTTONS = 8;
 private:
     QString deviceName_{};
     int fd_{-1};
-    struct js_event event_;
-    int button_[8]{0};
+    struct js_event event_{};
+    std::array<int, 9> button_{MAX_BUTTONS};
 signals:
 
 public slots:

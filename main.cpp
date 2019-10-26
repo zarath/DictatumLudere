@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
 
-    app.setWindowIcon(QIcon(":/favicon.png"));
+    QGuiApplication::setWindowIcon(QIcon(":/favicon.png"));
 
     DSSLoader loader;
     FootPaddle footPaddle(&app, "/dev/input/js0");
@@ -31,5 +31,5 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
-    return app.exec();
+    return QGuiApplication::exec();
 }

@@ -13,7 +13,7 @@ public:
 signals:
 
 public slots:
-    void prepare(QUrl);
+    void prepare(const QUrl&);
     QString getSource();
 private:
     QString source {""};
