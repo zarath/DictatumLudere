@@ -19,6 +19,8 @@ public:
       ERR_GET_BUTTONS
     };
 
+    static constexpr auto MAX_BUTTONS = 8;
+
     explicit FootPaddle(QObject *parent = nullptr,
                        const QString&& deviceName = "");
     ~FootPaddle();
@@ -29,12 +31,11 @@ public:
         return button_.at(buttonNr);
     };
 
-    static constexpr auto MAX_BUTTONS = 8;
 private:
     QString deviceName_{};
     int fd_{-1};
     struct js_event event_{};
-    std::array<int, 9> button_{MAX_BUTTONS};
+    std::array<int, MAX_BUTTONS> button_{};
 signals:
 
 public slots:
