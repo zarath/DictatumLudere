@@ -2,8 +2,13 @@ import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtQuick.Dialogs 1.3
 import QtMultimedia 5.13
+import Qt.labs.settings 1.0
 
 ApplicationWindow {
+    Settings{
+        property alias folder: fileDialog.folder
+    }
+
     id: window
     visible: true
     width: 433
@@ -64,6 +69,7 @@ ApplicationWindow {
     }
 
     FileDialog {
+
         id: fileDialog
         title: "Please choose a file"
         folder: shortcuts.home
