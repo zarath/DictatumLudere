@@ -1,0 +1,25 @@
+app-id: io.github.zarath.DictatumLudere
+runtime: org.kde.Platform
+runtime-version: '5.15-21.08'
+sdk: org.kde.Sdk
+command: /app/bin/dictatumludere
+modules:
+  - name: DictatumLudere
+    sources:
+      - type: git
+        url: https://github.com/zarath/DictatumLudere
+      - type: dir
+        path: /home/hmueller/repos/privat/DictatumLudere
+    buildsystem: cmake-ninja
+finish-args:
+  - --share=network
+  # X11 + XShm access
+  - --share=ipc
+  - --socket=x11
+  # Wayland access
+  - --socket=wayland
+  # Needs access to joystick
+  - --device=all
+  # Needs to save files locally
+  - --filesystem=host
+  - --socket=pulseaudio
