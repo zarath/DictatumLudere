@@ -8,8 +8,6 @@ modules:
     sources:
       - type: git
         url: https://github.com/zarath/DictatumLudere
-      - type: dir
-        path: /home/hmueller/repos/privat/DictatumLudere
     buildsystem: cmake-ninja
 finish-args:
   - --share=network
