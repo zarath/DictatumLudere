@@ -1,5 +1,5 @@
-import QtQuick 2.13
-import QtMultimedia 5.13
+import QtQuick
+import QtMultimedia
 
 HomeForm{
     id: homePage
@@ -25,7 +25,7 @@ HomeForm{
         )
     }
 
-    labelTitle.text: url2title(playRecording.source)
+    title: url2title(playRecording.source)
     labelDuration.text: mseconds2time(playRecording.duration)
 
     Timer {
@@ -46,11 +46,11 @@ HomeForm{
                 }
                 // rewind
                 if (footPaddle.getButton(0) === 1){
-                    playRecording.seek(playRecording.position - (1500 * speedSlider.value))
+                    playRecording.position(playRecording.position - (1500 * speedSlider.value))
                 }
                 }
             // progress bar
-            // if ((playRecording.playbackState === Audio.PlayingState) && updatable) {
+            // if ((playRecording.playbackState === MediaPlayer.PlayingState) && updatable) {
             if (updatable) {
                 progressBar.value = (playRecording.position + 1) / (playRecording.duration + 1)
             }
@@ -61,7 +61,7 @@ HomeForm{
     //
     progressBar.onPressedChanged: {
         updatable = !progressBar.pressed
-        playRecording.seek(playRecording.duration * progressBar.value)
+        playRecording.position = playRecording.duration * progressBar.value
     }
     progressBar.onValueChanged: {
         labelPosition.text = mseconds2time(playRecording.position)
@@ -72,29 +72,29 @@ HomeForm{
     //
     buttonSpeedReset.onPressed: {
         speedSlider.value = 1.0
-        playRecording.seek(playRecording.position + 1)
+        playRecording.position = playRecording.position + 1
     }
     speedSlider.onValueChanged: {
         console.log("SPEED: " + speedSlider.value)
         playRecording.playbackRate = speedSlider.value
-        playRecording.seek(playRecording.position + 1)
+        playRecording.position = playRecording.position + 1
     }
 
     // Volume settings
     //
     volumeSlider.onValueChanged: {
         console.log("VOLUME: " + volumeSlider.value)
-        playRecording.volume = volumeSlider.value
+        playRecording.audioOutput.volume = volumeSlider.value
     }
 
     // Play / Pause / Fwd / Rev
     //
     button_rev.onClicked: {
-        playRecording.seek(playRecording.position - (3000 * speedSlider.value))
+        playRecording.position = playRecording.position - (3000 * speedSlider.value)
     }
     button_play.onClicked: {
         console.log("SOURCE: " + playRecording.source)
-        if (playRecording.playbackState !== Audio.PlayingState) {
+        if (playRecording.playbackState !== MediaPlayer.PlayingState) {
             button_play.text = "PAUSE"
             playRecording.play()
         } else {
@@ -103,6 +103,6 @@ HomeForm{
         }
     }
     button_fwd.onClicked: {
-        playRecording.seek(playRecording.position + (3000 * speedSlider.value))
+        playRecording.position = playRecording.position + (3000 * speedSlider.value)
     }
 }

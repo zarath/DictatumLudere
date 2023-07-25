@@ -1,12 +1,13 @@
-import QtQuick 2.13
-import QtQuick.Controls 2.13
-import QtQuick.Dialogs 1.3
-import QtMultimedia 5.13
-import Qt.labs.settings 1.0
+import QtQuick
+import QtQuick.Controls
+import QtMultimedia
+import Qt.labs.platform
+import QtCore
 
 ApplicationWindow {
     Settings{
         property alias folder: fileDialog.folder
+        property alias last_file: playRecording.source
     }
 
     id: window
@@ -64,20 +65,21 @@ ApplicationWindow {
         }
     }
 
-    Audio{
+    MediaPlayer{
         id: playRecording
+        source: ""
+        audioOutput: AudioOutput {
+        }
     }
 
     FileDialog {
-
         id: fileDialog
         title: "Please choose a file"
-        folder: shortcuts.home
-        selectMultiple: false
+        fileMode: FileDialog.OpenFile
         onAccepted: {
-            console.log("You chose: " + fileDialog.fileUrl)
-            playRecording.source = fileDialog.fileUrl
-            var ok = loader.prepare(fileDialog.fileUrl)
+            console.log("You chose: " + fileDialog.file)
+            playRecording.source = fileDialog.file
+            var ok = loader.prepare(fileDialog.file)
             visible = false
             drawer.close()
         }

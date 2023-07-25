@@ -1,7 +1,12 @@
-import QtQuick 2.13
-import QtQuick.Controls 2.13
-
+import QtQuick
+import QtQuick.Controls
+import QtCore
 Page {
+    Settings{
+        property alias speed: speedSlider.value
+        property alias volume: volumeSlider.value
+    }
+
     id: page
     width: 433
     height: 100
@@ -9,7 +14,6 @@ Page {
     property alias labelDuration: labelDuration
     property alias labelPosition: labelPosition
     property alias progressBar: progressBar
-    property alias labelTitle: labelTitle
     property alias buttonSpeedReset: buttonSpeedReset
     property alias speedSlider: speedSlider
     property alias button_fwd: button_fwd
@@ -25,39 +29,27 @@ Page {
         height: 100
     }
 
-    Label {
-        id: labelTitle
-        x: 0
-        width: 309
-        height: 17
-        text: qsTr("Title")
-        anchors.verticalCenter: parent.verticalCenter
-        horizontalAlignment: Text.AlignHCenter
-        transformOrigin: Item.Center
-        anchors.verticalCenterOffset: -35
-    }
-
     Button {
         id: button_rev
-        x: 57
-        y: 22
-        width: 80
+        x: 10
+        y: 11
         flat: false
+        width: 80
         text: qsTr("REV")
     }
 
     Button {
         id: button_play
-        x: 143
-        y: 22
-        width: 80
+        x: 100
+        y: 11
+        width: 120
         text: qsTr("PLAY")
     }
 
     Button {
         id: button_fwd
-        x: 229
-        y: 22
+        x: 230
+        y: 11
         width: 80
         text: qsTr("FWD")
     }
@@ -65,7 +57,7 @@ Page {
     Slider {
         id: speedSlider
         x: 315
-        y: 22
+        y: 14
         width: 91
         height: 25
         to: 2
@@ -81,7 +73,7 @@ Page {
         Label {
             id: labelSpeed
             x: 8
-            y: -15
+            y: -13
             text: qsTr("Speed:")
         }
 
@@ -99,7 +91,7 @@ Page {
     Slider {
         id: progressBar
         x: 57
-        y: 76
+        y: 71
         width: 252
         height: 24
         value: 0.0
@@ -124,7 +116,7 @@ Page {
     Slider {
         id: volumeSlider
         x: 315
-        y: 53
+        y: 48
         width: 118
         height: 25
         ToolTip {

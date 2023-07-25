@@ -12,7 +12,6 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication::setOrganizationName("outgesourced.org");
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
 
     QGuiApplication::setWindowIcon(QIcon(":/favicon.png"));
