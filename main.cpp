@@ -8,7 +8,6 @@
 #ifdef Q_OS_LINUX
 #include "footpaddle.h"
 #endif
-#include "unistd.h"
 
 int main(int argc, char *argv[])
 {
