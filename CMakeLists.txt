@@ -19,6 +19,7 @@ if(ANDROID)
     add_library(dictatumludere SHARED main.cpp dssloader.cpp footpaddle.cpp qml.qrc)
 else()
     add_executable(dictatumludere main.cpp dssloader.cpp footpaddle.cpp qml.qrc)
+    set_property(TARGET dictatumludere PROPERTY WIN32_EXECUTABLE true)
 endif()
 
 target_compile_definitions(dictatumludere

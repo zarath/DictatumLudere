@@ -5,7 +5,9 @@
 #include <QIcon>
 
 #include "dssloader.h"
+#ifdef Q_OS_LINUX
 #include "footpaddle.h"
+#endif
 #include "unistd.h"
 
 int main(int argc, char *argv[])
@@ -17,12 +19,18 @@ int main(int argc, char *argv[])
     QGuiApplication::setWindowIcon(QIcon(":/favicon.png"));
 
     DSSLoader loader;
+#ifdef Q_OS_LINUX
     FootPaddle footPaddle(&app, "/dev/input/js0");
     footPaddle.open();
+#endif
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("loader", &loader);
+#ifdef Q_OS_LINUX
     engine.rootContext()->setContextProperty("footPaddle", &footPaddle);
+#else
+    engine.rootContext()->setContextProperty("footPaddle", nullptr);
+#endif
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

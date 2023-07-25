@@ -1,3 +1,4 @@
+#ifdef Q_OQ_LINUX
 #ifndef FOOTPADDLE_H
 #define FOOTPADDLE_H
 
@@ -42,3 +43,4 @@ public slots:
 };
 
 #endif // FOOTPADDLE_H
+#endif // Q_OS_LINUX

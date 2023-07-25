@@ -1,3 +1,4 @@
+#ifdef Q_OS_LINUX
 #include "footpaddle.h"
 
 #include <sys/types.h>
@@ -57,3 +58,4 @@ void FootPaddle::updateButtons(){
        /* EAGAIN is returned when the queue is empty */
     }
 }
+#endif

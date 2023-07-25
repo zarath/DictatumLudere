@@ -32,21 +32,23 @@ HomeForm{
         interval: 100; running: true; repeat: true
         onTriggered: {
             // footPaddle
-            footPaddle.updateButtons();
-            // play paddle
-            if (footPaddle.getButton(1) === 1){
-                playRecording.play()
-                paddlePlay = true
-            } else {
-                if (paddlePlay) {
-                    playRecording.pause()
+            if (footPaddle) {
+                footPaddle.updateButtons();
+                // play paddle
+                if (footPaddle.getButton(1) === 1){
+                    playRecording.play()
+                    paddlePlay = true
+                } else {
+                    if (paddlePlay) {
+                        playRecording.pause()
+                    }
+                    paddlePlay = false
                 }
-                paddlePlay = false
-            }
-            // rewind
-            if (footPaddle.getButton(0) === 1){
-                playRecording.seek(playRecording.position - (1500 * speedSlider.value))
-            }
+                // rewind
+                if (footPaddle.getButton(0) === 1){
+                    playRecording.seek(playRecording.position - (1500 * speedSlider.value))
+                }
+                }
             // progress bar
             // if ((playRecording.playbackState === Audio.PlayingState) && updatable) {
             if (updatable) {
