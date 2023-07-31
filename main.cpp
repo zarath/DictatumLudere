@@ -17,18 +17,16 @@ int main(int argc, char *argv[])
     QGuiApplication::setWindowIcon(QIcon(":/favicon.png"));
 
     DSSLoader loader;
+    QObject *fpaddel = nullptr;
 #ifdef Q_OS_LINUX
     FootPaddle footPaddle(&app, "/dev/input/js0");
     footPaddle.open();
+    fpaddel = &footPaddle;
 #endif
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("loader", &loader);
-#ifdef Q_OS_LINUX
-    engine.rootContext()->setContextProperty("footPaddle", &footPaddle);
-#else
-    engine.rootContext()->setContextProperty("footPaddle", nullptr);
-#endif
+    engine.rootContext()->setContextProperty("footPaddle", fpaddel);
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(dictatumludere VERSION 1.0.0 LANGUAGES CXX)
+project(dictatumludere VERSION 1.0.2 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+set(CMAKE_PREFIX_PATH /home/hmueller/Qt/6.5.2/gcc_64/lib/cmake/Qt6)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -14,12 +15,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Quick Multimedia)
-qt_standard_project_setup()
 
 if(ANDROID)
     add_library(dictatumludere SHARED main.cpp dssloader.cpp footpaddle.cpp qml.qrc)
 else()
-    qt_add_executable(dictatumludere main.cpp dssloader.cpp footpaddle.cpp qml.qrc)
+    add_executable(dictatumludere main.cpp dssloader.cpp footpaddle.cpp qml.qrc)
     set_property(TARGET dictatumludere PROPERTY WIN32_EXECUTABLE true)
 endif()
 

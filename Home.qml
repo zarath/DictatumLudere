@@ -46,7 +46,7 @@ HomeForm{
                 }
                 // rewind
                 if (footPaddle.getButton(0) === 1){
-                    playRecording.position(playRecording.position - (1500 * speedSlider.value))
+                    playRecording.position = playRecording.position - (1500 * speedSlider.value)
                 }
                 }
             // progress bar
