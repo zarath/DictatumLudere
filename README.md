@@ -8,6 +8,6 @@ Footpadle enabled qt based transcription player.
 Also a standard joystick with two buttons can be used to play
 and rewind...
 
-Developed with Qt 5.13
+Developed with Qt6
 
 ![Screenshot](Screenshot.png)
